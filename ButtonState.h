@@ -1,5 +1,5 @@
 enum ButtonState {
-  None,
+  NoButtonState,
   PressedShort,
   PressedLong
 };

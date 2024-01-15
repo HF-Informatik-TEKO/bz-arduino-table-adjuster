@@ -30,7 +30,7 @@ ButtonState Button::getState() {
     }
 
     resetCounter();
-    return None;
+    return NoButtonState;
   }
 
 }

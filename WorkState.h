@@ -1,5 +1,5 @@
 enum WorkState {
-  None,
+  NoWorkState,
   GoToHeight,
   SetHeight
 };

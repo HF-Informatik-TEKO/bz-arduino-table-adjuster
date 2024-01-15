@@ -5,10 +5,10 @@ class Button {
     int pin;
     int longPushDuration;
     int pushCounter;
-    
+
     void resetCounter();
 
   public:
-    Button(int pin, int pressDuration, int loopDuration);
+    Button(int pin);
     ButtonState getState();
 };

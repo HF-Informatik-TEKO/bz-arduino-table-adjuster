@@ -4,7 +4,7 @@ class PresetStorage {
     int user;
 
   public:
-    PresetStorage();
+    PresetStorage(int none);
     void setUser(int user);
     void setPreset(int presetId, int presetValue);
     int getPreset(int presetId);

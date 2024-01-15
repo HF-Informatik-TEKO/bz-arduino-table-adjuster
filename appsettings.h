@@ -8,5 +8,5 @@ const int SWITCH_LONG_PUSH_MS = 500;
 const int LOOP_DURATION_MS = 25;
 
 // Preset Default Values
-const int PRESET_1[] = {500, 800};
-const int PRESET_2[] = {500, 800};
+const int PRESET_1[] = {100, 120};
+const int PRESET_2[] = {200, 220};

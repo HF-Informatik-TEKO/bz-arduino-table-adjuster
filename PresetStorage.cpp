@@ -1,7 +1,7 @@
 #include "appsettings.h"
 #include "PresetStorage.h"
 
-PresetStorage::PresetStorage() {
+PresetStorage::PresetStorage(int none) {
   storage[0][0] = PRESET_1[0];
   storage[0][1] = PRESET_1[1];
 

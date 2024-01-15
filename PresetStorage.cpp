@@ -1,12 +1,15 @@
+#include "Arduino.h"
 #include "appsettings.h"
 #include "PresetStorage.h"
 
-PresetStorage::PresetStorage(int none) {
-  storage[0][0] = PRESET_1[0];
-  storage[0][1] = PRESET_1[1];
+PresetStorage::PresetStorage() {
+  user = DEFAULT_USER;
 
-  storage[1][0] = PRESET_2[0];
-  storage[1][1] = PRESET_2[1];
+  for (int i = 0; i < ACTIVE_USERS; i++) {
+    for (int j = 0; j < ACTIVE_PRESETS; j++) {
+      storage[i][j] = PRESETS[i][j];    
+    }
+  }
 }
 
 void PresetStorage::setUser(int userId) {
@@ -20,4 +23,3 @@ void PresetStorage::setPreset(int presetId, int presetValue) {
 int PresetStorage::getPreset(int presetId) {
   return storage[user][presetId];
 }
-

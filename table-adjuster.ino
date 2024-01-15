@@ -1,27 +1,30 @@
 #include "appsettings.h"
-#include "Button.h"
-#include "PresetStorage.h"
+#include "PresetController.h"
 
-Button btn(47);
-PresetStorage store(1);
+PresetController controller;
 
 void setup() {
   Serial.begin(9600);
-  store.setUser(0);
+  Serial.println("Program Start");
+  controller = PresetController();
+  // TODO: Falsify appsettings values. e.g. more active presets than default values. etc.
 }
 
 void loop() {
+  WorkState state = controller.getState();
 
-  ButtonState state = btn.getState();
-  // Serial.print(state);
-  // Serial.print("\n");
-  if (state == PressedShort) {
-    Serial.print("store value: ");
-    Serial.print(store.getPreset(0));
+  if (state != NoWorkState) {
+    Serial.print(state);
     Serial.print("\n");
-  } else if (state == PressedLong) {
-    store.setPreset(0, 99);
   }
-  
+
+  if (state == GoToHeight) {
+    int val = controller.getPresetValue();
+    Serial.println(val);
+  }
+  if (state == SetHeight) {
+    controller.setPresetValue(99);
+  }
+
   delay(LOOP_DURATION_MS);
 }

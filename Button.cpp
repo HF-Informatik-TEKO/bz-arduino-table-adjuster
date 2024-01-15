@@ -2,6 +2,9 @@
 #include "Button.h"
 #include "appsettings.h"
 
+Button::Button() {
+  // Empty on purpose.
+}
 
 Button::Button(int pin) {
   this->pin = pin;
@@ -10,31 +13,36 @@ Button::Button(int pin) {
   pinMode(pin, INPUT);
 }
 
+bool Button::hasStateChanged() {
+  return hasChanged;
+}
+
+ButtonState Button::returnState(ButtonState state) {
+    hasChanged = lastState != state;
+    lastState = state;
+    return state;
+}
+
 ButtonState Button::getState() {
   int state = digitalRead(pin);
   bool isPushedLong = pushCounter > longPushDuration;
 
   if (state == HIGH) {
     if (isPushedLong) {
-      Serial.print(pushCounter);
-      Serial.print(" long\n");
-      return PressedLong;
+      return returnState(PressedLong);
     }
     pushCounter++;
   } else {
     if (pushCounter > 0 && !isPushedLong) {
-      Serial.print(pushCounter);
-      Serial.print(" short\n");
       resetCounter();
-      return PressedShort;
+      return returnState(PressedShort);
     }
-
     resetCounter();
-    return NoButtonState;
+    return returnState(NoButtonState);
   }
-
 }
 
 void Button::resetCounter() {
+  lastState = NoButtonState;
   pushCounter = 0;
 }

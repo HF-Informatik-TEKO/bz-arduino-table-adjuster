@@ -1,6 +1,8 @@
 #ifndef TABLEMOVER_H
 #define TABLEMOVER_H
 
+#include "MoveDirection.h"
+
 class TableMover {
     private:
       void moveUp();

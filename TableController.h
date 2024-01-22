@@ -1,16 +1,24 @@
 #ifndef TABLECONTROLLER_H
 #define TABLECONTROLLER_H
 
-class TableController {
-    private:
-      DistanceMeter meter;
-      TableMover mover;
-      MoveDirection direction;
+#include "appsettings.h"
+#include "DistanceMeter.h"
+#include "TableMover.h"
+#include "MoveDirection.h"
 
-    public: 
-      TableController();
-      int getCurrentPosition();
-      void goToPosition(int pos);
+class TableController {
+  private:
+    DistanceMeter meter = DistanceMeter(ULTRASONIC_TRIGGER, ULTRASONIC_ECHO);
+    TableMover mover = TableMover();
+    MoveDirection direction = None;
+
+    // int abs(int number);
+
+  public: 
+    TableController();
+    int getCurrentPosition();
+    MoveDirection goToPosition(int pos);
+    MoveDirection stop();
 };
 
 #endif

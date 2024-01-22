@@ -9,11 +9,6 @@ PresetController::PresetController() {
   pressedButton = 0;
 }
 
-WorkState PresetController::returnValue(WorkState state, int button) {
-  pressedButton = button;
-  return state;
-}
-
 WorkState PresetController::getState() {
   for (int i = 0; i < ACTIVE_PRESETS; i++) {
     ButtonState state = presetButtons[i].getState();
@@ -27,6 +22,11 @@ WorkState PresetController::getState() {
   }
 
   return NoWorkState;
+}
+
+WorkState PresetController::returnValue(WorkState state, int button) {
+  pressedButton = button;
+  return state;
 }
 
 int PresetController::getPresetValue() {

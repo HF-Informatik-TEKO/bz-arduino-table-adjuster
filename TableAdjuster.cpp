@@ -9,6 +9,7 @@ TableAdjuster::TableAdjuster() {
 
 void TableAdjuster::cycle() {
   if (state == NoWorkState) {
+    // preset.loopUserIfNeeded();
     WorkState currentState = preset.getState();
     changeState(currentState);
     // Green LED.

@@ -9,6 +9,7 @@ class PresetStorage {
   public:
     PresetStorage();
     void setUser(int user);
+    void iterateUser(int increment);
     void setPreset(int presetId, int presetValue);
     int getPreset(int presetId);
 };

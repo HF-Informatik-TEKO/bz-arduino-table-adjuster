@@ -8,7 +8,6 @@ TableController::TableController() {
 
 int TableController::getCurrentPosition() {
   return meter.getDistance();
-  // return 110;
 }
 
 MoveDirection TableController::goToPosition(int pos) {
@@ -22,9 +21,9 @@ MoveDirection TableController::goToPosition(int pos) {
   Serial.println(currentPosition);
 
 
-  if (abs(wayToMove) < 5) {
+  if (abs(wayToMove) <= HEIGHT_TOLERANCE) {
     direction = None;
-  } else if (wayToMove < 5) {
+  } else if (wayToMove < 0) {
     direction = Down;
   } else {
     direction = Up;

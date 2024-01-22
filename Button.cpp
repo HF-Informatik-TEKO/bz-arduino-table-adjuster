@@ -8,7 +8,7 @@ Button::Button() {
 
 Button::Button(int pin) {
   this->pin = pin;
-  longPushDuration = SWITCH_LONG_PUSH_MS / LOOP_DURATION_MS;
+  longPushDuration = BUTTON_LONG_PUSH_MS / LOOP_DURATION_MS;
   resetCounter();
   pinMode(pin, INPUT);
 }

@@ -1,10 +1,6 @@
 #include "Arduino.h"
 #include "TableMover.h"
 
-TableMover::TableMover() {
-
-}
-
 void TableMover::moveTable(MoveDirection direction) {
   if (direction == Up) {
     moveUp();

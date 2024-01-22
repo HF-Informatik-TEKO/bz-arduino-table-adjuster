@@ -4,7 +4,7 @@
 
 DistanceMeter::DistanceMeter(int trigger, int echo) {
   // Original Value From Book: const float SONIC_SPEED = 0.03432;
-  SONIC_SPEED = 0.035;
+  sonicSpeed = 0.035;
   pinTrigger = trigger;
   pinEcho = echo;
   pinMode(trigger, OUTPUT);
@@ -25,5 +25,5 @@ int DistanceMeter::getDistance() {
 }
 
 float DistanceMeter::calculateDistance(long time) {
-  return time / 2 * SONIC_SPEED;
+  return time / 2 * sonicSpeed;
 }

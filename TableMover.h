@@ -8,8 +8,8 @@ class TableMover {
       void moveUp();
       void moveDown();
       void moveStop();
+
     public: 
-      TableMover();
       void moveTable(MoveDirection direction);
 };
 

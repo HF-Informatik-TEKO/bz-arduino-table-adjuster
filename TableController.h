@@ -12,8 +12,6 @@ class TableController {
     TableMover mover = TableMover();
     MoveDirection direction = None;
 
-    // int abs(int number);
-
   public: 
     TableController();
     int getCurrentPosition();

@@ -3,7 +3,7 @@
 
 class DistanceMeter {
   private:
-    float SONIC_SPEED;
+    float sonicSpeed;
     int pinTrigger;
     int pinEcho;
 

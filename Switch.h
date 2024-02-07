@@ -1,3 +1,6 @@
+#ifndef SWITCH_H
+#define SWITCH_H
+
 #include "SwitchState.h"
 
 class Switch {
@@ -12,3 +15,5 @@ class Switch {
     SwitchState checkSwitch();
     void resetCounter();
 };
+
+#endif

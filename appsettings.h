@@ -11,6 +11,11 @@ const int ULTRASONIC_TRIGGER = 5;
 const int ULTRASONIC_ECHO = 6;
 const int HEIGHT_TOLERANCE = 2;
 
+// Status Light
+const int STATUS_LED_RED = 52;
+const int STATUS_LED_GREEN = 51;
+const int STATUS_LED_YELLOW = 50;
+
 // Times
 const int LOOP_DURATION_MS = 50;
 const int TIMEOUT_DURATION_MS = 3000;

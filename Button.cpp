@@ -8,7 +8,7 @@ Button::Button() {
 
 Button::Button(int pin) {
   this->pin = pin;
-  longPushDuration = BUTTON_LONG_PUSH_MS / LOOP_DURATION_MS;
+  longPushDuration = BUTTON_LONG_PRESS_MS / LOOP_DURATION_MS;
   resetCounter();
   pinMode(pin, INPUT);
 }
@@ -25,15 +25,15 @@ ButtonState Button::returnState(ButtonState state) {
 
 ButtonState Button::getState() {
   int state = digitalRead(pin);
-  bool isPushedLong = pushCounter > longPushDuration;
+  bool isPressedLong = pushCounter > longPushDuration;
 
   if (state == HIGH) {
-    if (isPushedLong) {
+    if (isPressedLong) {
       return returnState(PressedLong);
     }
     pushCounter++;
   } else {
-    if (pushCounter > 0 && !isPushedLong) {
+    if (pushCounter > 0 && !isPressedLong) {
       resetCounter();
       return returnState(PressedShort);
     }

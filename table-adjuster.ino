@@ -1,17 +1,17 @@
 #include "appsettings.h"
 #include "TableAdjuster.h"
 
-TableAdjuster table;
+TableAdjuster adjuster;
 
 void setup() {
   Serial.begin(9600);
   Serial.println();
   Serial.println("Program Start");
-  table = TableAdjuster();
+  adjuster = TableAdjuster();
   // TODO: Falsify appsettings values. e.g. more active presets than default values. etc.
 }
 
 void loop() {
-  table.cycle();
+  adjuster.cycle();
   delay(LOOP_DURATION_MS);
 }

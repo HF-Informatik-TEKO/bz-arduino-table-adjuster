@@ -3,12 +3,14 @@
 
 #include "PresetController.h"
 #include "TableController.h"
+#include "Statuslight.h"
 #include "WorkState.h"
 
 class TableAdjuster {
   private:
     PresetController preset;
     TableController table;
+    StatusLight status;
     WorkState state;
     int height;
     int timeoutCounter;

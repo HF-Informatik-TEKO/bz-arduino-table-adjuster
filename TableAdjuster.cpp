@@ -4,22 +4,25 @@
 TableAdjuster::TableAdjuster() {
   preset = PresetController();
   table = TableController();
+  status = StatusLight();
   resetState();
 }
 
 void TableAdjuster::cycle() {
   if (state == NoWorkState) {
-    // preset.loopUserIfNeeded();
     WorkState currentState = preset.getState();
     changeState(currentState);
     // Green LED.
+    status.setFreeStatus();
   } 
 
   if (state == GoToHeight) {
     // Yellow LED.
+    status.setBusyStatus();
     moveTable();
   } else if (state == SetHeight) {
     // Yellow LED.
+    status.setBusyStatus();
     setHeight();
   }
 
@@ -38,7 +41,7 @@ void TableAdjuster::moveTable() {
     int presetHeight = preset.getPresetValue();
     MoveDirection direction = table.goToPosition(presetHeight);
     if (direction == None) {
-      Serial.print("table-adjuster::GoToHeight reached correct position.");
+      Serial.println("table-adjuster::GoToHeight reached correct position.");
       resetState();
     }
   }

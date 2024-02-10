@@ -8,11 +8,14 @@
 
 class TableController {
   private:
-    DistanceMeter meter = DistanceMeter(ULTRASONIC_TRIGGER, ULTRASONIC_ECHO);
-    TableMover mover = TableMover();
-    MoveDirection direction = None;
+    DistanceMeter* meter = new DistanceMeter(PIN_ULTRASONIC_TRIGGER, PIN_ULTRASONIC_ECHO);
+    TableMover* mover = new TableMover(PIN_SERVO);
+
+    void printStatus(int pos, int current);
 
   public: 
+    MoveDirection direction = None;
+    
     TableController();
     int getCurrentPosition();
     MoveDirection goToPosition(int pos);

@@ -3,25 +3,20 @@
 #include "TableController.h"
 
 TableController::TableController() {
-  direction = None;
 }
 
 int TableController::getCurrentPosition() {
-  return meter.getDistance();
+  return meter->getDistance();
 }
 
 MoveDirection TableController::goToPosition(int pos) {
   int currentPosition = getCurrentPosition();
   int wayToMove = currentPosition - pos;
 
-  Serial.print("TableController: ");
-  Serial.print("Soll: ");
-  Serial.print(pos);
-  Serial.print(" | IST: ");
-  Serial.println(currentPosition);
+  printStatus(pos, currentPosition);
 
-
-  if (abs(wayToMove) <= HEIGHT_TOLERANCE) {
+  bool hasReachedHeight = abs(wayToMove) <= HEIGHT_TOLERANCE;
+  if (hasReachedHeight) {
     direction = None;
   } else if (wayToMove < 0) {
     direction = Down;
@@ -29,11 +24,19 @@ MoveDirection TableController::goToPosition(int pos) {
     direction = Up;
   }
 
-  mover.moveTable(direction);
+  mover->moveTable(direction);
   return direction;
 }
 
 MoveDirection TableController::stop() {
-  mover.moveTable(None);
+  mover->moveTable(None);
   return None;
+}
+
+void TableController::printStatus(int pos, int currentPos) {
+  Serial.print("TableController: ");
+  Serial.print("Soll: ");
+  Serial.print(pos);
+  Serial.print(" | IST: ");
+  Serial.println(currentPos);
 }

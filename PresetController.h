@@ -8,10 +8,11 @@
 
 class PresetController {
     private:
+      // + 1 for user button.
+      PresetStorage* storage = new PresetStorage();
+      Button* userButton = new Button(PIN_BTN_USER);
+      Button* presetButtons[ACTIVE_PRESETS + 1];
       int amountOfButtons = ACTIVE_PRESETS + 1;
-      PresetStorage storage = PresetStorage();
-      Button userButton = Button(BTN_USER);
-      Button presetButtons[ACTIVE_PRESETS + 1];
       int pressedButton;
 
       WorkState returnValue(WorkState state, int button);

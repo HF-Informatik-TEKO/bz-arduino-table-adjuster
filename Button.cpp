@@ -2,10 +2,6 @@
 #include "Button.h"
 #include "appsettings.h"
 
-Button::Button() {
-  // Empty on purpose.
-}
-
 Button::Button(int pin) {
   this->pin = pin;
   longPushDuration = BUTTON_LONG_PRESS_MS / LOOP_DURATION_MS;

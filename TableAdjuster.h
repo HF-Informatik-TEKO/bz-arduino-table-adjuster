@@ -8,9 +8,9 @@
 
 class TableAdjuster {
   private:
-    PresetController preset;
-    TableController table;
-    StatusLight status;
+    PresetController* preset = new PresetController();
+    TableController* table = new TableController();
+    StatusLight* status = new StatusLight();
     WorkState state;
     int height;
     int timeoutCounter;

@@ -15,7 +15,6 @@ class Button {
     void resetCounter();
 
   public:
-    Button();
     Button(int pin);
     ButtonState getState();
     bool hasStateChanged();

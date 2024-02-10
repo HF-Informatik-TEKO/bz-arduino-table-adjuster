@@ -9,7 +9,6 @@ class Switch {
     int longPush;
     int pushCounter;
 
-
   public:
     Switch(int pin, int pushLenght, int loopLength);
     SwitchState checkSwitch();

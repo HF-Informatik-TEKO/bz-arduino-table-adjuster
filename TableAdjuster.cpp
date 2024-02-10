@@ -2,27 +2,20 @@
 #include "TableAdjuster.h"
 
 TableAdjuster::TableAdjuster() {
-  preset = PresetController();
-  table = TableController();
-  status = StatusLight();
-  resetState();
 }
 
 void TableAdjuster::cycle() {
   if (state == NoWorkState) {
-    WorkState currentState = preset.getState();
+    WorkState currentState = preset->getState();
     changeState(currentState);
-    // Green LED.
-    status.setFreeStatus();
+    status->setFreeStatus();
   } 
 
   if (state == GoToHeight) {
-    // Yellow LED.
-    status.setBusyStatus();
+    status->setBusyStatus();
     moveTable();
   } else if (state == SetHeight) {
-    // Yellow LED.
-    status.setBusyStatus();
+    status->setBusyStatus();
     setHeight();
   }
 
@@ -35,11 +28,11 @@ void TableAdjuster::cycle() {
 
 void TableAdjuster::moveTable() {
   if (timeoutCounter >= TIMEOUT_DURATION_MS) {
-    table.stop();
+    table->stop();
     timeout("table-adjuster::GoToHeight");
   } else {
-    int presetHeight = preset.getPresetValue();
-    MoveDirection direction = table.goToPosition(presetHeight);
+    int presetHeight = preset->getPresetValue();
+    MoveDirection direction = table->goToPosition(presetHeight);
     if (direction == None) {
       Serial.println("table-adjuster::GoToHeight reached correct position.");
       resetState();
@@ -48,8 +41,8 @@ void TableAdjuster::moveTable() {
 }
 
 void TableAdjuster::setHeight() {
-  int currentPos = table.getCurrentPosition();
-  preset.setPresetValue(currentPos);
+  int currentPos = table->getCurrentPosition();
+  preset->setPresetValue(currentPos);
   Serial.print("table-adjuster::SetHeight set height to ");
   Serial.println(currentPos);
   resetState();
@@ -58,11 +51,13 @@ void TableAdjuster::setHeight() {
 
 void TableAdjuster::timeout(String className) {
   // Red LED.
+  status->setErrorStatus();
   resetState();
   Serial.println("!!! TIMEOUT !!!");
   Serial.print(className);
   Serial.print(" timed out. took more than (ms) ");
   Serial.println(TIMEOUT_DURATION_MS);
+  delay(500);
 }
 
 void TableAdjuster::resetState() {

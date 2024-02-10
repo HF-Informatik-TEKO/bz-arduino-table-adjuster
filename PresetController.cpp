@@ -2,24 +2,15 @@
 #include "Arduino.h"
 #include "PresetController.h"
 
-PresetController::PresetController() {
-  presetButtons[0] = new Button(PIN_BTN_USER);
-
-  for(int i = 0; i < ACTIVE_PRESETS; i++) {
-    presetButtons[i + 1] = new Button(PIN_BTN_PRESETS[i]);
-  }
-
-  pressedButton = 0;
-}
-
 // Handling multiple buttons outside this for-loop leads to bugs.
 WorkState PresetController::getState() {
-  for (int i = 0; i < ACTIVE_PRESETS + 1; i++) {
-    ButtonState state = presetButtons[i]->getState();
+  for (int i = 0; i < sizeof(buttons) + 1; i++) {
+    ButtonState state = buttons[i].getState();
 
     bool isUserButton = i == 0;
     if (isUserButton) {
       if (state == PressedShort) {
+        Serial.println("PresetController::getState: Preset user press.");
         storage->iterateUser(1);
       }
       if (state == PressedLong) {
@@ -30,9 +21,11 @@ WorkState PresetController::getState() {
 
     // Handle preset button.
     if (state == PressedShort) {
+      Serial.println("PresetController::getState: Preset short press.");
       return returnValue(GoToHeight, i);
     }
     if (state == PressedLong) {
+      Serial.println("PresetController::getState: Preset long press.");
       return returnValue(SetHeight, i);
     }
   }

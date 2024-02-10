@@ -3,12 +3,17 @@
 
 class DistanceMeter {
   private:
-    float sonicSpeed;
+    float sonicSpeed = 0.035;
     int pinTrigger;
     int pinEcho;
 
   public: 
-    DistanceMeter(int trigger, int echo);
+    DistanceMeter(int trigger, int echo) {
+      pinTrigger = trigger;
+      pinEcho = echo;
+      pinMode(trigger, OUTPUT);
+      pinMode(echo, INPUT);
+    }
     int getDistance();
     float calculateDistance(long time);
 };

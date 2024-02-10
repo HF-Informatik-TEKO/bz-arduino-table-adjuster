@@ -3,7 +3,6 @@
 #include <Servo.h>
 
 TableMover::TableMover(int pin) {
-  Serial.println("TableMover pin constructor");
   servo = new Servo();
   servo->attach(pin);
 }

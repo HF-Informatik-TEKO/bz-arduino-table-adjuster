@@ -1,9 +1,6 @@
 #include "Arduino.h"
 #include "TableAdjuster.h"
 
-TableAdjuster::TableAdjuster() {
-}
-
 void TableAdjuster::cycle() {
   if (state == NoWorkState) {
     WorkState currentState = preset->getState();

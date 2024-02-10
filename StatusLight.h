@@ -1,20 +1,21 @@
 #ifndef STATUSLIGHT_H
 #define STATUSLIGHT_H
 
-#include "appsettings.h"
 #include "LED.h"
-// #include "MyLed.h"
+#include "StatusLightConfig.h"
 
 class StatusLight {
     private:
-      LED* green = new LED(PIN_STATUS_LED_GREEN);
-      LED* yellow = new LED(PIN_STATUS_LED_YELLOW);
-      LED* red = new LED(PIN_STATUS_LED_RED);
-      // MyLed green = MyLed(STATUS_LED_GREEN);
-      // MyLed yellow = MyLed(STATUS_LED_YELLOW);
-      // MyLed red = MyLed(STATUS_LED_RED);
+      LED* green;
+      LED* yellow;
+      LED* red;
 
     public: 
+      StatusLight(StatusLightConfig* config) {
+        red = new LED(config->red);
+        yellow = new LED(config->yellow);
+        green = new LED(config->green);
+      }
       void setFreeStatus();
       void setBusyStatus();
       void setErrorStatus();

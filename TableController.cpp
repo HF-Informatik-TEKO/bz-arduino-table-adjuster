@@ -2,8 +2,8 @@
 #include "Arduino.h"
 #include "TableController.h"
 
-TableController::TableController() {
-}
+// TableController::TableController() {
+// }
 
 int TableController::getCurrentPosition() {
   return meter->getDistance();

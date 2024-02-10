@@ -2,6 +2,7 @@
 #define BUTTON_H
 
 #include "ButtonState.h"
+#include "DurationsConfig.h"
 
 class Button {
   private:
@@ -15,7 +16,8 @@ class Button {
     void resetCounter();
 
   public:
-    Button(int pin);
+    Button() {}
+    Button(int pin, DurationsConfig* durationsConfig);
     ButtonState getState();
     bool hasStateChanged();
 };

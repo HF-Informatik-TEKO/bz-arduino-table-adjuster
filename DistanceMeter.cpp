@@ -2,20 +2,11 @@
 #include "Arduino.h"
 #include "DistanceMeter.h"
 
-DistanceMeter::DistanceMeter(int trigger, int echo) {
-  // Original Value From Book: const float SONIC_SPEED = 0.03432;
-  sonicSpeed = 0.035;
-  pinTrigger = trigger;
-  pinEcho = echo;
-  pinMode(trigger, OUTPUT);
-  pinMode(echo, INPUT);
-}
-
 int DistanceMeter::getDistance() {
   digitalWrite(pinTrigger, LOW);
-  delay(5);
-  digitalWrite(pinTrigger, HIGH);
   delay(10);
+  digitalWrite(pinTrigger, HIGH);
+  delay(20);
   digitalWrite(pinTrigger, LOW);
 
   long echoTime = pulseIn(pinEcho, HIGH);

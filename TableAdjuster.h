@@ -8,9 +8,9 @@
 
 class TableAdjuster {
   private:
-    PresetController* preset = new PresetController();
-    TableController* table = new TableController();
-    StatusLight* status = new StatusLight();
+    PresetController* preset;
+    TableController* table;
+    StatusLight* status;
     WorkState state;
     int height;
     int timeoutCounter;
@@ -22,7 +22,12 @@ class TableAdjuster {
     void timeout(String className);
 
   public:
-    TableAdjuster();
+    TableAdjuster(PresetController* preset, TableController* table, StatusLight* status) {
+      this->preset = preset;
+      this->table = table;
+      this->status = status;
+    }
+
     void cycle();
 };
 

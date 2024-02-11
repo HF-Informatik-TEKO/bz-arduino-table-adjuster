@@ -132,6 +132,21 @@ class TableAdjusterBuilder {
       servoConfig->pin = pin;
       return *this;
     }
+
+    TableAdjusterBuilder& setMoveUpAngle(int angle) {
+      servoConfig->upPos = angle;
+      return *this;
+    }
+
+    TableAdjusterBuilder& setMoveStopAngle(int angle) {
+      servoConfig->stopPos = angle;
+      return *this;
+    }
+
+    TableAdjusterBuilder& setMoveDownAngle(int angle) {
+      servoConfig->downPos = angle;
+      return *this;
+    }
 #pragma endregion
 };
 

@@ -4,16 +4,21 @@
 #include "Servo.h"
 #include "MoveDirection.h"
 
+#include "ServoConfig.h"
+
 class TableMover {
     private:
       Servo* servo;
+      int stopPos;
+      int upPos;
+      int downPos;
 
       void moveUp();
       void moveDown();
       void moveStop();
 
     public: 
-      TableMover(int pin);
+      TableMover(ServoConfig* servo);
       void moveTable(MoveDirection direction);
       void move(int degree);
 };

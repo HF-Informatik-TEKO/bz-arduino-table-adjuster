@@ -1,6 +1,12 @@
-#include "HardwareSerial.h"
 #include "Arduino.h"
 #include "DistanceMeter.h"
+
+DistanceMeter::DistanceMeter(int trigger, int echo) {
+  pinTrigger = trigger;
+  pinEcho = echo;
+  pinMode(trigger, OUTPUT);
+  pinMode(echo, INPUT);
+}
 
 int DistanceMeter::getDistance() {
   digitalWrite(pinTrigger, LOW);

@@ -1,8 +1,8 @@
 #ifndef TABLEMOVER_H
 #define TABLEMOVER_H
 
-#include "MoveDirection.h"
 #include "Servo.h"
+#include "MoveDirection.h"
 
 class TableMover {
     private:

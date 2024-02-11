@@ -11,19 +11,7 @@ class PresetStorage {
     int** storage;
 
   public:
-    PresetStorage(UsersPresetsConfig* users, UsersPresetsDefault* userDefaults) {
-      maxUsers = users->activeUsers;
-      storage = new int*[maxUsers];
-      setUser(userDefaults->defaultUser);
-
-      for (int i = 0; i < maxUsers; i++) {
-        storage[i] = new int[users->activePresets];
-        for (int j = 0; j < users->activePresets; j++) {
-          storage[i][j] = userDefaults->defaultPresetValues[i][j];    
-        }
-      }
-    }
-    
+    PresetStorage(UsersPresetsConfig* users, UsersPresetsDefault* userDefaults);    
     void setUser(int user);
     void iterateUser(int increment);
     void setPreset(int presetId, int presetValue);

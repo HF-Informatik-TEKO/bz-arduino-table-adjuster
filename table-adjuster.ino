@@ -1,5 +1,3 @@
-#include "appsettings.h"
-#include "TableAdjuster.h"
 #include "TableAdjusterBuilder.h"
 
 TableAdjuster* adjuster;
@@ -7,20 +5,12 @@ TableAdjuster* adjuster;
 void setup() {
   Serial.begin(9600);
   Serial.println();
-  Serial.println("Program Start");
 
-  // adjuster = new TableAdjuster();
-  // TODO: Falsify appsettings values. e.g. more active presets than default values. etc.
-
-
-  Builder builder;
+  TableAdjusterBuilder builder;
   adjuster = &builder
+    .setPinBtnUser(49)
     .setPinBtnPresets(0, 47)
     .setPinBtnPresets(1, 45)
-    .setPinBtnUser(49)
-    .setLoopDurationMs(50)
-    .setTimeoutDurationMs(3000)
-    .setButtonLongPressMs(1000)
     .setPinUltrasonicTrigger(5)
     .setPinUltrasonicEcho(6)
     .setHeightTolerance(2)
@@ -28,10 +18,20 @@ void setup() {
     .setPinStatusLedGreen(51)
     .setPinStatusLedYellow(50)
     .setPinServo(43)
+    .setActiveUsers(2)
+    .setActivePresets(2)
+    .setDefaultUser(0)
+    .setDefaultValues(0, new int[2] {10, 20})
+    .setDefaultValues(1, new int[2] {15, 25})
+    .setLoopDurationMs(50)
+    .setTimeoutDurationMs(3000)
+    .setButtonLongPressMs(1000)
     .build();
+
+  Serial.println("Program Start");
 }
 
 void loop() {
   adjuster->cycle();
-  delay(LOOP_DURATION_MS);
+  adjuster->cycleDelay();
 }

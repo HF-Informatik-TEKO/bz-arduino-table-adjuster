@@ -1,6 +1,32 @@
 #include "Arduino.h"
 #include "TableAdjuster.h"
 
+TableAdjuster::TableAdjuster(
+  DurationsConfig* durationsConfig,
+  PresetController* preset, 
+  TableController* table, 
+  StatusLight* status) 
+{
+  Serial.println("TableAdjuster::setup Start Setup");
+  this->loopDurationMs = durationsConfig->loopDurationMs;
+  this->timeoutDurationMs = durationsConfig->timeoutDurationMs;
+  this->preset = preset;
+  this->table = table;
+  this->status = status;
+  timeoutCounter = 0;
+
+  status->setErrorStatus();
+  delay(800);
+  status->setBusyStatus();
+  delay(800);
+  status->setFreeStatus();
+  Serial.println("TableAdjuster::setup Finish Setup");
+}
+
+void TableAdjuster::cycleDelay() {
+  delay(loopDurationMs);
+}
+
 void TableAdjuster::cycle() {
   if (state == NoWorkState) {
     WorkState currentState = preset->getState();
@@ -16,22 +42,22 @@ void TableAdjuster::cycle() {
     setHeight();
   }
 
-  if (timeoutCounter >= (TIMEOUT_DURATION_MS)) {
-    timeout("table-adjuster");
+  if (timeoutCounter >= timeoutDurationMs) {
+    timeout("TableAdjuster");
   }
 
-  timeoutCounter += LOOP_DURATION_MS;
+  timeoutCounter += loopDurationMs;
 }
 
 void TableAdjuster::moveTable() {
-  if (timeoutCounter >= TIMEOUT_DURATION_MS) {
+  if (timeoutCounter >= timeoutDurationMs) {
     table->stop();
-    timeout("table-adjuster::GoToHeight");
+    timeout("TableAdjuster::moveTable");
   } else {
     int presetHeight = preset->getPresetValue();
     MoveDirection direction = table->goToPosition(presetHeight);
     if (direction == None) {
-      Serial.println("table-adjuster::GoToHeight reached correct position.");
+      Serial.println("TableAdjuster::moveTable reached correct position.");
       resetState();
     }
   }
@@ -40,20 +66,19 @@ void TableAdjuster::moveTable() {
 void TableAdjuster::setHeight() {
   int currentPos = table->getCurrentPosition();
   preset->setPresetValue(currentPos);
-  Serial.print("table-adjuster::SetHeight set height to ");
+  Serial.print("TableAdjuster::setHeight set height to ");
   Serial.println(currentPos);
   resetState();
 }
 
 
 void TableAdjuster::timeout(String className) {
-  // Red LED.
   status->setErrorStatus();
   resetState();
   Serial.println("!!! TIMEOUT !!!");
   Serial.print(className);
   Serial.print(" timed out. took more than (ms) ");
-  Serial.println(TIMEOUT_DURATION_MS);
+  Serial.println(timeoutDurationMs);
   delay(500);
 }
 

@@ -2,6 +2,7 @@
 #define STATUSLIGHT_H
 
 #include "LED.h"
+
 #include "StatusLightConfig.h"
 
 class StatusLight {
@@ -11,11 +12,7 @@ class StatusLight {
       LED* red;
 
     public: 
-      StatusLight(StatusLightConfig* config) {
-        red = new LED(config->red);
-        yellow = new LED(config->yellow);
-        green = new LED(config->green);
-      }
+      StatusLight(StatusLightConfig* config);
       void setFreeStatus();
       void setBusyStatus();
       void setErrorStatus();

@@ -8,12 +8,7 @@ class DistanceMeter {
     int pinEcho;
 
   public: 
-    DistanceMeter(int trigger, int echo) {
-      pinTrigger = trigger;
-      pinEcho = echo;
-      pinMode(trigger, OUTPUT);
-      pinMode(echo, INPUT);
-    }
+    DistanceMeter(int trigger, int echo);
     int getDistance();
     float calculateDistance(long time);
 };

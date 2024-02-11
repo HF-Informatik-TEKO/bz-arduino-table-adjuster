@@ -1,7 +1,7 @@
 #ifndef SWITCHSTATE_H
 #define SWITCHSTATE_H
 
-enum SwitchState {
+enum ButtonState {
   None,
   NoPush,
   ShortPush,

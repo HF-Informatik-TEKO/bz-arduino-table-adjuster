@@ -6,11 +6,11 @@ class DurationsConfig {
 		int pin;
 
 	public:
-		DurationsConfig() {}
-
     int loopDurationMs = 50;
     int timeoutDurationMs = 3000;
     int buttonLongPressMs = 1000;
+
+		DurationsConfig() {}
 };
 
 #endif

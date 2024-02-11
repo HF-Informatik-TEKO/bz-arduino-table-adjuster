@@ -1,6 +1,5 @@
 #include "Arduino.h"
 #include "TableMover.h"
-#include <Servo.h>
 
 TableMover::TableMover(int pin) {
   servo = new Servo();

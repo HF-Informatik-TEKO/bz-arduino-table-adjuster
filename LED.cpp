@@ -14,12 +14,11 @@ void LED::off() {
 	digitalWrite(pin, LOW);
 }
 
-void LED::blink(int durationMS) {
+void LED::blink(int times, int durationMS) {
+  for (int i = 0; i < times; i++) {
     on();
     delay(durationMS);
     off();
     delay(durationMS);
-    on();
-    delay(durationMS);
-    off();
+  }
 }

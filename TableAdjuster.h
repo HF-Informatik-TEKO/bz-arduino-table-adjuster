@@ -14,6 +14,8 @@ class TableAdjuster {
     WorkState state;
     int height;
     int timeoutCounter;
+    int timeoutDurationMs;
+    int loopDurationMs;
 
     void moveTable();
     void setHeight();
@@ -22,12 +24,13 @@ class TableAdjuster {
     void timeout(String className);
 
   public:
-    TableAdjuster(PresetController* preset, TableController* table, StatusLight* status) {
-      this->preset = preset;
-      this->table = table;
-      this->status = status;
-    }
-
+    TableAdjuster(
+      DurationsConfig* durationsConfig, 
+      PresetController* preset, 
+      TableController* table, 
+      StatusLight* status
+    );
+    void cycleDelay();
     void cycle();
 };
 

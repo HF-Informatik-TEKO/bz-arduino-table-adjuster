@@ -1,9 +1,11 @@
-#include "HardwareSerial.h"
 #include "Arduino.h"
 #include "TableController.h"
 
-// TableController::TableController() {
-// }
+TableController::TableController(UltrasonicConfig* sonic, ServoConfig* servo) {
+  meter = new DistanceMeter(sonic->trigger, sonic->echo);
+  mover = new TableMover(servo->pin);
+  heightTolerance = sonic->tolerance;
+}
 
 int TableController::getCurrentPosition() {
   return meter->getDistance();
@@ -15,7 +17,7 @@ MoveDirection TableController::goToPosition(int pos) {
 
   printStatus(pos, currentPosition);
 
-  bool hasReachedHeight = abs(wayToMove) <= HEIGHT_TOLERANCE;
+  bool hasReachedHeight = abs(wayToMove) <= heightTolerance;
   if (hasReachedHeight) {
     direction = None;
   } else if (wayToMove < 0) {

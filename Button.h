@@ -2,6 +2,7 @@
 #define BUTTON_H
 
 #include "ButtonState.h"
+
 #include "DurationsConfig.h"
 
 class Button {

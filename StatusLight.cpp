@@ -21,6 +21,5 @@ void StatusLight::setBusyStatus() {
 void StatusLight::setErrorStatus() {
   green->off();
   yellow->off();
-  // red->blink(2, 500);
   red->on();
 }

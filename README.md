@@ -16,7 +16,10 @@ adjuster = &builder
     .setPinStatusLedYellow(46)
     .setPinStatusLedGreen(47)
 
-    .setPinServo(6)
+    .setPinServo(44)
+    .setMoveUpAngle(120)
+    .setMoveStopAngle(90)
+    .setMoveDownAngle(60)
 
     .setActiveUsers(2)
     .setActivePresets(2)

@@ -2,8 +2,8 @@
 #include "TableController.h"
 
 TableController::TableController(UltrasonicConfig* sonic, ServoConfig* servo) {
-  meter = new DistanceMeter(sonic->trigger, sonic->echo);
-  mover = new TableMover(servo->pin);
+  meter = new DistanceMeter(sonic);
+  mover = new TableMover(servo);
   heightTolerance = sonic->tolerance;
 }
 

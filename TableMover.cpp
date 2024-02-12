@@ -1,9 +1,12 @@
 #include "Arduino.h"
 #include "TableMover.h"
 
-TableMover::TableMover(int pin) {
+TableMover::TableMover(ServoConfig* config) {
   servo = new Servo();
-  servo->attach(pin);
+  servo->attach(config->pin);
+  this->upPos = config->upPos;
+  this->stopPos = config->stopPos;
+  this->downPos = config->downPos;
 }
 
 void TableMover::moveTable(MoveDirection direction) {

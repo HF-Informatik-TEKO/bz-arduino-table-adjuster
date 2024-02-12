@@ -11,6 +11,7 @@ void setup() {
     .setPinBtnUser(53)
     .setPinBtnPresets(0, 51)
     .setPinBtnPresets(1, 50)
+    .setPinBtnEmergency(52)
 
     .setHeightTolerance(2)
     .setPinUltrasonicTrigger(48)
@@ -20,7 +21,10 @@ void setup() {
     .setPinStatusLedYellow(46)
     .setPinStatusLedGreen(47)
 
-    .setPinServo(6)
+    .setPinServo(44)
+    .setMoveUpAngle(120)
+    .setMoveStopAngle(90)
+    .setMoveDownAngle(60)
 
     .setActiveUsers(2)
     .setActivePresets(2)
@@ -31,6 +35,7 @@ void setup() {
     .setLoopDurationMs(50)
     .setTimeoutDurationMs(3000)
     .setButtonLongPressMs(1000)
+    
     .build();
 
   Serial.println("Program Start");

@@ -1,6 +1,8 @@
 #ifndef DISTANCEMETER_H
 #define DISTANCEMETER_H
 
+#include "UltrasonicConfig.h"
+
 class DistanceMeter {
   private:
     float sonicSpeed = 0.035;
@@ -8,7 +10,7 @@ class DistanceMeter {
     int pinEcho;
 
   public: 
-    DistanceMeter(int trigger, int echo);
+    DistanceMeter(UltrasonicConfig* sonic);
     int getDistance();
     float calculateDistance(long time);
 };

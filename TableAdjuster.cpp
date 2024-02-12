@@ -17,14 +17,11 @@ TableAdjuster::TableAdjuster(
   this->status = status;
   this->timeoutCounter = 0;
   this->emergencyButton = new EmergencyButton(usersPresetConfig->pinBtnEmergency);
-  // this->emergencyButton = usersPresetConfig->pinBtnEmergency;
-  // this->emergencyLastState = 0;
-  // this->isEmergency = false;
 
   status->setErrorStatus();
-  // delay(800);
+  delay(800);
   status->setBusyStatus();
-  // delay(800);
+  delay(800);
   status->setFreeStatus();
   Serial.println("TableAdjuster::setup Finish Setup");
 }
@@ -35,10 +32,13 @@ void TableAdjuster::cycleDelay() {
 
 void TableAdjuster::cycle() {
   if (emergencyButton->isEmergency()) {
-    status->setErrorStatus();
-    changeState(NoWorkState);
+    if (!isEmergency) {
+      activateEmergencyStatus();
+    }
     return;
   }
+  
+  isEmergency = false;
 
   if (state == NoWorkState) {
     WorkState currentState = preset->getState();
@@ -59,6 +59,13 @@ void TableAdjuster::cycle() {
   }
 
   timeoutCounter += loopDurationMs;
+}
+
+void TableAdjuster::activateEmergencyStatus() {
+  isEmergency = true;
+  status->setErrorStatus();
+  table->stop();
+  changeState(NoWorkState);
 }
 
 void TableAdjuster::moveTable() {
@@ -82,7 +89,6 @@ void TableAdjuster::setHeight() {
   Serial.println(currentPos);
   resetState();
 }
-
 
 void TableAdjuster::timeout(String className) {
   status->setErrorStatus();

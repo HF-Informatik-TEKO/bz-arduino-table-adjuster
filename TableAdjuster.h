@@ -18,15 +18,14 @@ class TableAdjuster {
     int timeoutCounter;
     int timeoutDurationMs;
     int loopDurationMs;
-    // int emergencyButton;
-    // int emergencyLastState;
-    // bool isEmergency;
+    bool isEmergency;
 
     void moveTable();
     void setHeight();
     void resetState();
     void changeState(WorkState newState);
     void timeout(String className);
+    void activateEmergencyStatus();
 
   public:
     TableAdjuster(

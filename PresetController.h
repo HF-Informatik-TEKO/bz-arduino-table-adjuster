@@ -13,8 +13,9 @@
 class PresetController {
     private:
       PresetStorage* storage;
-      Button* buttons;
+      Button** buttons;
       int pressedButton;
+      int numberOfButtons;
 
       WorkState returnValue(WorkState state, int button);
 

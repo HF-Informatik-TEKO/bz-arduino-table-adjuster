@@ -28,7 +28,7 @@ class TableAdjusterBuilder {
       TableController* tc = new TableController(ultrasonicConfig, servoConfig);
       StatusLight* status = new StatusLight(statusConfig);
 
-      TableAdjuster* ta = new TableAdjuster(durationsConfig, pc, tc, status);
+      TableAdjuster* ta = new TableAdjuster(usersPresetConfig, durationsConfig, pc, tc, status);
       Serial.println("Builder::build Finish Build");
       return *ta;
     }
@@ -41,6 +41,11 @@ class TableAdjusterBuilder {
 
     TableAdjusterBuilder& setPinBtnUser(int pin) {
       usersPresetConfig->pinBtnUser = pin;
+      return *this;
+    }
+
+    TableAdjusterBuilder& setPinBtnEmergency(int pin) {
+      usersPresetConfig->pinBtnEmergency = pin;
       return *this;
     }
 

@@ -11,6 +11,7 @@ void setup() {
     .setPinBtnUser(53)
     .setPinBtnPresets(0, 51)
     .setPinBtnPresets(1, 50)
+    .setPinBtnEmergency(52)
 
     .setHeightTolerance(2)
     .setPinUltrasonicTrigger(48)

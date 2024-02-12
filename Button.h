@@ -18,6 +18,7 @@ class Button {
 
   public:
     Button() {}
+    Button(int pin, int longPushDuration);
     Button(int pin, DurationsConfig* durationsConfig);
     ButtonState getState();
     bool hasStateChanged();

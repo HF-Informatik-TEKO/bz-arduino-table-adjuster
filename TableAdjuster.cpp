@@ -2,10 +2,12 @@
 #include "TableAdjuster.h"
 
 TableAdjuster::TableAdjuster(
+  UsersPresetsConfig* usersPresetConfig,
   DurationsConfig* durationsConfig,
   PresetController* preset, 
   TableController* table, 
-  StatusLight* status) 
+  StatusLight* status
+  ) 
 {
   Serial.println("TableAdjuster::setup Start Setup");
   this->loopDurationMs = durationsConfig->loopDurationMs;
@@ -13,12 +15,16 @@ TableAdjuster::TableAdjuster(
   this->preset = preset;
   this->table = table;
   this->status = status;
-  timeoutCounter = 0;
+  this->timeoutCounter = 0;
+  this->emergencyButton = new EmergencyButton(usersPresetConfig->pinBtnEmergency);
+  // this->emergencyButton = usersPresetConfig->pinBtnEmergency;
+  // this->emergencyLastState = 0;
+  // this->isEmergency = false;
 
   status->setErrorStatus();
-  delay(800);
+  // delay(800);
   status->setBusyStatus();
-  delay(800);
+  // delay(800);
   status->setFreeStatus();
   Serial.println("TableAdjuster::setup Finish Setup");
 }
@@ -28,6 +34,12 @@ void TableAdjuster::cycleDelay() {
 }
 
 void TableAdjuster::cycle() {
+  if (emergencyButton->isEmergency()) {
+    status->setErrorStatus();
+    changeState(NoWorkState);
+    return;
+  }
+
   if (state == NoWorkState) {
     WorkState currentState = preset->getState();
     changeState(currentState);

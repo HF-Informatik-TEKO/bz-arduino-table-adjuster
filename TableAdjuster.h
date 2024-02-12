@@ -5,17 +5,22 @@
 #include "TableController.h"
 #include "Statuslight.h"
 #include "WorkState.h"
+#include "EmergencyButton.h"
 
 class TableAdjuster {
   private:
     PresetController* preset;
     TableController* table;
     StatusLight* status;
+    EmergencyButton* emergencyButton;
     WorkState state;
     int height;
     int timeoutCounter;
     int timeoutDurationMs;
     int loopDurationMs;
+    // int emergencyButton;
+    // int emergencyLastState;
+    // bool isEmergency;
 
     void moveTable();
     void setHeight();
@@ -25,6 +30,7 @@ class TableAdjuster {
 
   public:
     TableAdjuster(
+      UsersPresetsConfig* usersPresetConfig,
       DurationsConfig* durationsConfig, 
       PresetController* preset, 
       TableController* table, 

@@ -3,7 +3,8 @@
 
 PresetStorage::PresetStorage(
   UsersPresetsConfig* users, 
-  UsersPresetsDefault* userDefaults) 
+  UsersPresetsDefault* userDefaults
+  )
 {
   maxUsers = users->activeUsers;
   storage = new int*[maxUsers];

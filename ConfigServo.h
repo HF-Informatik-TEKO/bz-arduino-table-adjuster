@@ -5,10 +5,10 @@
 
 class ConfigServo {
   public:
-    int pin = 22;
+    int pin = 44;
     int upPos = 120;
     int stopPos = 90;
-    int downPos = 50;
+    int downPos = 60;
 
     ConfigServo() {}
 };

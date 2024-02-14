@@ -3,9 +3,9 @@
 
 class ConfigStatusLight {
 	public:
-    int red = 52;
-    int green = 51;
-    int yellow = 50;
+    int red = 45;
+    int green = 46;
+    int yellow = 47;
     
     ConfigStatusLight() {}
 };

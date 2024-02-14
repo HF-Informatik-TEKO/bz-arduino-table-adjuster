@@ -5,8 +5,8 @@
 #include "TableMover.h"
 #include "MoveDirection.h"
 
-#include "ServoConfig.h"
-#include "UltrasonicConfig.h"
+#include "ConfigServo.h"
+#include "ConfigUltrasonic.h"
 
 
 class TableController {
@@ -20,7 +20,7 @@ class TableController {
   public: 
     MoveDirection direction = None;
     
-    TableController(UltrasonicConfig* sonic, ServoConfig* servo);    
+    TableController(ConfigUltrasonic* sonic, ConfigServo* servo);    
     int getCurrentPosition();
     MoveDirection goToPosition(int pos);
     MoveDirection stop();

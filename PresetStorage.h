@@ -1,8 +1,8 @@
 #ifndef PRESETSTORAGE_H
 #define PRESETSTORAGE_H
 
-#include "UsersPresetsConfig.h"
-#include "UsersPresetsDefault.h"
+#include "ConfigUsersPresets.h"
+#include "ConfigUsersPresetsDefault.h"
 
 class PresetStorage {
   private:
@@ -11,7 +11,7 @@ class PresetStorage {
     int** storage;
 
   public:
-    PresetStorage(UsersPresetsConfig* users, UsersPresetsDefault* userDefaults);    
+    PresetStorage(ConfigUsersPresets* users, ConfigUsersPresetsDefault* userDefaults);    
     void setUser(int user);
     void iterateUser(int increment);
     void setPreset(int presetId, int presetValue);

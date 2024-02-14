@@ -2,10 +2,12 @@
 #include "TableAdjuster.h"
 
 TableAdjuster::TableAdjuster(
-  DurationsConfig* durationsConfig,
+  ConfigUsersPresets* usersPresetConfig,
+  ConfigDuration* durationsConfig,
   PresetController* preset, 
   TableController* table, 
-  StatusLight* status) 
+  StatusLight* status
+  ) 
 {
   Serial.println("TableAdjuster::setup Start Setup");
   this->loopDurationMs = durationsConfig->loopDurationMs;
@@ -13,7 +15,8 @@ TableAdjuster::TableAdjuster(
   this->preset = preset;
   this->table = table;
   this->status = status;
-  timeoutCounter = 0;
+  this->timeoutCounter = 0;
+  this->emergencyButton = new EmergencyButton(usersPresetConfig->pinBtnEmergency);
 
   status->setErrorStatus();
   delay(800);
@@ -28,6 +31,15 @@ void TableAdjuster::cycleDelay() {
 }
 
 void TableAdjuster::cycle() {
+  if (emergencyButton->isEmergency()) {
+    if (!isEmergency) {
+      activateEmergencyStatus();
+    }
+    return;
+  }
+  
+  isEmergency = false;
+
   if (state == NoWorkState) {
     WorkState currentState = preset->getState();
     changeState(currentState);
@@ -47,6 +59,13 @@ void TableAdjuster::cycle() {
   }
 
   timeoutCounter += loopDurationMs;
+}
+
+void TableAdjuster::activateEmergencyStatus() {
+  isEmergency = true;
+  status->setErrorStatus();
+  table->stop();
+  changeState(NoWorkState);
 }
 
 void TableAdjuster::moveTable() {
@@ -70,7 +89,6 @@ void TableAdjuster::setHeight() {
   Serial.println(currentPos);
   resetState();
 }
-
 
 void TableAdjuster::timeout(String className) {
   status->setErrorStatus();

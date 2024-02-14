@@ -1,7 +1,15 @@
 #include "Arduino.h"
 #include "Button.h"
 
-Button::Button(int pin, DurationsConfig* durationsConfig) {
+Button::Button(int pin, int longPushDuration) {
+  this->pin = pin;
+  this->longPushDuration = longPushDuration;
+  pushCounter = 0;
+  resetCounter();
+  pinMode(pin, INPUT);
+}
+
+Button::Button(int pin, ConfigDuration* durationsConfig) {
   this->pin = pin;
   longPushDuration = durationsConfig->buttonLongPressMs / durationsConfig->loopDurationMs;
   pushCounter = 0;

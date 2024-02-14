@@ -1,6 +1,6 @@
 #include "StatusLight.h"
 
-StatusLight::StatusLight(StatusLightConfig* config) {
+StatusLight::StatusLight(ConfigStatusLight* config) {
   red = new LED(config->red);
   yellow = new LED(config->yellow);
   green = new LED(config->green);
@@ -21,6 +21,5 @@ void StatusLight::setBusyStatus() {
 void StatusLight::setErrorStatus() {
   green->off();
   yellow->off();
-  // red->blink(2, 500);
   red->on();
 }

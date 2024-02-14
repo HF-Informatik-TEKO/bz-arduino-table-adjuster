@@ -3,21 +3,14 @@
 
 #include "TableAdjuster.h"
 
-#include "ServoConfig.h"
-#include "StatusLightConfig.h"
-#include "UltrasonicConfig.h"
-#include "UsersPresetsConfig.h"
-#include "DurationsConfig.h"
-#include "UsersPresetsDefault.h"
-
 class TableAdjusterBuilder {
   private:
-    UsersPresetsConfig* usersPresetConfig = new UsersPresetsConfig();
-    DurationsConfig* durationsConfig = new DurationsConfig();
-    UsersPresetsDefault* userPresetDefault = new UsersPresetsDefault();
-    UltrasonicConfig* ultrasonicConfig = new UltrasonicConfig();
-    StatusLightConfig* statusConfig = new StatusLightConfig();
-    ServoConfig* servoConfig = new ServoConfig();
+    ConfigUsersPresets* usersPresetConfig = new ConfigUsersPresets();
+    ConfigDuration* durationsConfig = new ConfigDuration();
+    ConfigUsersPresetsDefault* userPresetDefault = new ConfigUsersPresetsDefault();
+    ConfigUltrasonic* ultrasonicConfig = new ConfigUltrasonic();
+    ConfigStatusLight* statusConfig = new ConfigStatusLight();
+    ConfigServo* servoConfig = new ConfigServo();
 
   public:
     TableAdjusterBuilder() {}
@@ -28,12 +21,12 @@ class TableAdjusterBuilder {
       TableController* tc = new TableController(ultrasonicConfig, servoConfig);
       StatusLight* status = new StatusLight(statusConfig);
 
-      TableAdjuster* ta = new TableAdjuster(durationsConfig, pc, tc, status);
+      TableAdjuster* ta = new TableAdjuster(usersPresetConfig, durationsConfig, pc, tc, status);
       Serial.println("Builder::build Finish Build");
       return *ta;
     }
 
-#pragma region UsersPresetsConfig
+#pragma region ConfigUsersPresets
     TableAdjusterBuilder& setPinBtnPresets(int pos, int pin) {
       usersPresetConfig->pinBtnPresets[pos] = pin;
       return *this;
@@ -41,6 +34,11 @@ class TableAdjusterBuilder {
 
     TableAdjusterBuilder& setPinBtnUser(int pin) {
       usersPresetConfig->pinBtnUser = pin;
+      return *this;
+    }
+
+    TableAdjusterBuilder& setPinBtnEmergency(int pin) {
+      usersPresetConfig->pinBtnEmergency = pin;
       return *this;
     }
 
@@ -63,7 +61,7 @@ class TableAdjusterBuilder {
     }
 #pragma endregion
 
-#pragma region DurationsConfig
+#pragma region ConfigDuration
     TableAdjusterBuilder& setLoopDurationMs(int duration) {
       durationsConfig->loopDurationMs = duration;
       return *this;
@@ -130,6 +128,21 @@ class TableAdjusterBuilder {
 #pragma region Servo
     TableAdjusterBuilder& setPinServo(int pin) {
       servoConfig->pin = pin;
+      return *this;
+    }
+
+    TableAdjusterBuilder& setMoveUpAngle(int angle) {
+      servoConfig->upPos = angle;
+      return *this;
+    }
+
+    TableAdjusterBuilder& setMoveStopAngle(int angle) {
+      servoConfig->stopPos = angle;
+      return *this;
+    }
+
+    TableAdjusterBuilder& setMoveDownAngle(int angle) {
+      servoConfig->downPos = angle;
       return *this;
     }
 #pragma endregion

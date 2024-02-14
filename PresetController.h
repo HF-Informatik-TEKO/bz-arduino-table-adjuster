@@ -5,21 +5,26 @@
 #include "Button.h"
 #include "PresetStorage.h"
 
-#include "UsersPresetsConfig.h"
-#include "UsersPresetsDefault.h"
-#include "DurationsConfig.h"
+#include "ConfigUsersPresets.h"
+#include "ConfigUsersPresetsDefault.h"
+#include "ConfigDuration.h"
 
 
 class PresetController {
     private:
       PresetStorage* storage;
-      Button* buttons;
+      Button** buttons;
       int pressedButton;
+      int numberOfButtons;
 
       WorkState returnValue(WorkState state, int button);
 
     public: 
-      PresetController(UsersPresetsConfig* users, UsersPresetsDefault* userDefaults, DurationsConfig* durationsConfig);
+      PresetController(
+        ConfigUsersPresets* users, 
+        ConfigUsersPresetsDefault* userDefaults, 
+        ConfigDuration* durationsConfig
+      );
       WorkState getState();
       int getPresetValue();
       void setPresetValue(int value);

@@ -2,8 +2,9 @@
 #include "PresetStorage.h"
 
 PresetStorage::PresetStorage(
-  UsersPresetsConfig* users, 
-  UsersPresetsDefault* userDefaults) 
+  ConfigUsersPresets* users, 
+  ConfigUsersPresetsDefault* userDefaults
+  )
 {
   maxUsers = users->activeUsers;
   storage = new int*[maxUsers];

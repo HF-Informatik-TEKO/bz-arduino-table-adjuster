@@ -3,7 +3,7 @@
 
 #include "LED.h"
 
-#include "StatusLightConfig.h"
+#include "ConfigStatusLight.h"
 
 class StatusLight {
     private:
@@ -12,7 +12,7 @@ class StatusLight {
       LED* red;
 
     public: 
-      StatusLight(StatusLightConfig* config);
+      StatusLight(ConfigStatusLight* config);
       void setFreeStatus();
       void setBusyStatus();
       void setErrorStatus();

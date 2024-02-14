@@ -1,7 +1,7 @@
-#ifndef USERSPRESETSCONFIG_H
-#define USERSPRESETSCONFIG_H
+#ifndef CONFIGUSERSPRESETS_H
+#define CONFIGUSERSPRESETS_H
 
-class UsersPresetsConfig {
+class ConfigUsersPresets {
 	public:
     int activeUsers = 2;
     int activePresets = 2;
@@ -9,7 +9,7 @@ class UsersPresetsConfig {
     int pinBtnUser = 49;
     int pinBtnPresets[5] = { 47, 45 };
 
-    UsersPresetsConfig() {}
+    ConfigUsersPresets() {}
 };
 
 #endif

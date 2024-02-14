@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "TableController.h"
 
-TableController::TableController(UltrasonicConfig* sonic, ServoConfig* servo) {
+TableController::TableController(ConfigUltrasonic* sonic, ConfigServo* servo) {
   meter = new DistanceMeter(sonic);
   mover = new TableMover(servo);
   heightTolerance = sonic->tolerance;

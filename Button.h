@@ -3,7 +3,7 @@
 
 #include "ButtonState.h"
 
-#include "DurationsConfig.h"
+#include "ConfigDuration.h"
 
 class Button {
   private:
@@ -19,7 +19,7 @@ class Button {
   public:
     Button() {}
     Button(int pin, int longPushDuration);
-    Button(int pin, DurationsConfig* durationsConfig);
+    Button(int pin, ConfigDuration* durationsConfig);
     ButtonState getState();
     bool hasStateChanged();
 };

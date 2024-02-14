@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "DistanceMeter.h"
 
-DistanceMeter::DistanceMeter(UltrasonicConfig* sonic) {
+DistanceMeter::DistanceMeter(ConfigUltrasonic* sonic) {
   pinTrigger = sonic->trigger;
   pinEcho = sonic->echo;
   pinMode(pinTrigger, OUTPUT);

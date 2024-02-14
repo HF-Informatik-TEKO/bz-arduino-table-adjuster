@@ -7,6 +7,13 @@
 #include "WorkState.h"
 #include "EmergencyButton.h"
 
+#include "ConfigServo.h"
+#include "ConfigStatusLight.h"
+#include "ConfigUltrasonic.h"
+#include "ConfigUsersPresets.h"
+#include "ConfigDuration.h"
+#include "ConfigUsersPresetsDefault.h"
+
 class TableAdjuster {
   private:
     PresetController* preset;
@@ -29,8 +36,8 @@ class TableAdjuster {
 
   public:
     TableAdjuster(
-      UsersPresetsConfig* usersPresetConfig,
-      DurationsConfig* durationsConfig, 
+      ConfigUsersPresets* usersPresetConfig,
+      ConfigDuration* durationsConfig, 
       PresetController* preset, 
       TableController* table, 
       StatusLight* status

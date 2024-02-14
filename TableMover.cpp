@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "TableMover.h"
 
-TableMover::TableMover(ServoConfig* config) {
+TableMover::TableMover(ConfigServo* config) {
   servo = new Servo();
   servo->attach(config->pin);
   this->upPos = config->upPos;

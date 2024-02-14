@@ -1,7 +1,7 @@
-#ifndef DURATIONSCONFIG_h
-#define DURATIONSCONFIG_h
+#ifndef CONFIGDURATION_H
+#define CONFIGDURATION_H
 
-class DurationsConfig {
+class ConfigDuration {
 	private:
 		int pin;
 
@@ -10,7 +10,7 @@ class DurationsConfig {
     int timeoutDurationMs = 3000;
     int buttonLongPressMs = 1000;
 
-		DurationsConfig() {}
+		ConfigDuration() {}
 };
 
 #endif

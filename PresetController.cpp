@@ -2,9 +2,9 @@
 #include "Arduino.h"
 
 PresetController::PresetController(
-  UsersPresetsConfig* users, 
-  UsersPresetsDefault* userDefaults, 
-  DurationsConfig* durationsConfig
+  ConfigUsersPresets* users, 
+  ConfigUsersPresetsDefault* userDefaults, 
+  ConfigDuration* durationsConfig
   ) 
 {
   storage = new PresetStorage(users, userDefaults);

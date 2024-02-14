@@ -1,10 +1,11 @@
 #ifndef TABLEMOVER_H
 #define TABLEMOVER_H
 
+// #include "depending/Servo/Servo.h"
 #include "Servo.h"
 #include "MoveDirection.h"
 
-#include "ServoConfig.h"
+#include "ConfigServo.h"
 
 class TableMover {
     private:
@@ -18,7 +19,7 @@ class TableMover {
       void moveStop();
 
     public: 
-      TableMover(ServoConfig* servo);
+      TableMover(ConfigServo* servo);
       void moveTable(MoveDirection direction);
       void move(int degree);
 };

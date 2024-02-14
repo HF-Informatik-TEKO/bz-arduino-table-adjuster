@@ -2,8 +2,8 @@
 #include "TableAdjuster.h"
 
 TableAdjuster::TableAdjuster(
-  UsersPresetsConfig* usersPresetConfig,
-  DurationsConfig* durationsConfig,
+  ConfigUsersPresets* usersPresetConfig,
+  ConfigDuration* durationsConfig,
   PresetController* preset, 
   TableController* table, 
   StatusLight* status

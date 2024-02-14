@@ -1,6 +1,6 @@
 #include "StatusLight.h"
 
-StatusLight::StatusLight(StatusLightConfig* config) {
+StatusLight::StatusLight(ConfigStatusLight* config) {
   red = new LED(config->red);
   yellow = new LED(config->yellow);
   green = new LED(config->green);

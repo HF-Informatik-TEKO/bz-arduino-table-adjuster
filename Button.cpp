@@ -9,7 +9,7 @@ Button::Button(int pin, int longPushDuration) {
   pinMode(pin, INPUT);
 }
 
-Button::Button(int pin, DurationsConfig* durationsConfig) {
+Button::Button(int pin, ConfigDuration* durationsConfig) {
   this->pin = pin;
   longPushDuration = durationsConfig->buttonLongPressMs / durationsConfig->loopDurationMs;
   pushCounter = 0;

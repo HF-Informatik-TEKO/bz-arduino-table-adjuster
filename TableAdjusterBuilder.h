@@ -3,21 +3,14 @@
 
 #include "TableAdjuster.h"
 
-#include "ServoConfig.h"
-#include "StatusLightConfig.h"
-#include "UltrasonicConfig.h"
-#include "UsersPresetsConfig.h"
-#include "DurationsConfig.h"
-#include "UsersPresetsDefault.h"
-
 class TableAdjusterBuilder {
   private:
-    UsersPresetsConfig* usersPresetConfig = new UsersPresetsConfig();
-    DurationsConfig* durationsConfig = new DurationsConfig();
-    UsersPresetsDefault* userPresetDefault = new UsersPresetsDefault();
-    UltrasonicConfig* ultrasonicConfig = new UltrasonicConfig();
-    StatusLightConfig* statusConfig = new StatusLightConfig();
-    ServoConfig* servoConfig = new ServoConfig();
+    ConfigUsersPresets* usersPresetConfig = new ConfigUsersPresets();
+    ConfigDuration* durationsConfig = new ConfigDuration();
+    ConfigUsersPresetsDefault* userPresetDefault = new ConfigUsersPresetsDefault();
+    ConfigUltrasonic* ultrasonicConfig = new ConfigUltrasonic();
+    ConfigStatusLight* statusConfig = new ConfigStatusLight();
+    ConfigServo* servoConfig = new ConfigServo();
 
   public:
     TableAdjusterBuilder() {}
@@ -33,7 +26,7 @@ class TableAdjusterBuilder {
       return *ta;
     }
 
-#pragma region UsersPresetsConfig
+#pragma region ConfigUsersPresets
     TableAdjusterBuilder& setPinBtnPresets(int pos, int pin) {
       usersPresetConfig->pinBtnPresets[pos] = pin;
       return *this;
@@ -68,7 +61,7 @@ class TableAdjusterBuilder {
     }
 #pragma endregion
 
-#pragma region DurationsConfig
+#pragma region ConfigDuration
     TableAdjusterBuilder& setLoopDurationMs(int duration) {
       durationsConfig->loopDurationMs = duration;
       return *this;

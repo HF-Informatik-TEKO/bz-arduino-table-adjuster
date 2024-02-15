@@ -21,7 +21,6 @@ class TableAdjuster {
     StatusLight* status;
     EmergencyButton* emergencyButton;
     WorkState state;
-    int height;
     int timeoutCounter;
     int timeoutDurationMs;
     int loopDurationMs;

@@ -110,17 +110,17 @@ class TableAdjusterBuilder {
 
 #pragma region StatusLight
     TableAdjusterBuilder& setPinStatusLedRed(int pin) {
-      statusConfig->red = pin;
+      statusConfig->pinLedRed = pin;
       return *this;
     }
 
     TableAdjusterBuilder& setPinStatusLedGreen(int pin) {
-      statusConfig->green = pin;
+      statusConfig->pinLedGreen = pin;
       return *this;
     }
 
     TableAdjusterBuilder& setPinStatusLedYellow(int pin) {
-      statusConfig->yellow = pin;
+      statusConfig->pinLedYellow = pin;
       return *this;
     }
 #pragma endregion

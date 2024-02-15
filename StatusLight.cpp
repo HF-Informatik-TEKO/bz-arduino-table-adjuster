@@ -1,9 +1,9 @@
 #include "StatusLight.h"
 
 StatusLight::StatusLight(ConfigStatusLight* config) {
-  red = new LED(config->red);
-  yellow = new LED(config->yellow);
-  green = new LED(config->green);
+  red = new LED(config->pinLedRed);
+  yellow = new LED(config->pinLedYellow);
+  green = new LED(config->pinLedGreen);
 }
 
 void StatusLight::setFreeStatus() {

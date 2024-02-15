@@ -9,7 +9,7 @@ The table-adjuster can handle 5 different users with each 5 preset-buttons.
 ### Safety
 For your own safety it's best to setup and properly configure the emergency-button.
 After hitting the emergency-button, the table-adjuster will stop immediately any action and returns to a neutral state where all processes remain paused.
-Only after pressing the emergency-button again, the table-adjuster will listen to any inputs.
+Only after pressing the emergency-button again, the table-adjuster will listen to any inputs.§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
 
 ## Dependencies
 This library uses the "Servo.h" library to control the servo motor. [GitHub](https://github.com/arduino-libraries/Servo)

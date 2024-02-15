@@ -9,7 +9,7 @@ class LED {
 		LED(int pin);
 		void on();
 		void off();
-    void blink(int times, int durationMS);
+    	void blink(int times, int durationMS);
 };
 
 #endif

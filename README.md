@@ -6,10 +6,28 @@ This library is for controlling a height adjustable Table which can not move to 
 With the Builder, we can easily setup the table-adjuster by passing all neccessary infos to it (pins, default heights, tolerances, etc.).
 The table-adjuster can handle 5 different users with each 5 preset-buttons.
 
+### How To Use
+**User Button**  
+Press the user button to loop through all available users.  
+**Preset Button**  
+Press one of the configured preset buttons to get the table-adjuster started.  
+**Emergency Button**  
+Press the emergency button to immediately stop the table-adjuster from work. See chapter safety.  
+**Status Light**  
+The status lgiht will show the internal state of the table-adjuster.  
+
+| color | status |
+| --- | --- |
+| green | free to take new orders |
+| yellow | busy executing existing orders |
+| red | emergency button pressed or timeout |
+
+
 ### Safety
 For your own safety it's best to setup and properly configure the emergency-button.
 After hitting the emergency-button, the table-adjuster will stop immediately any action and returns to a neutral state where all processes remain paused.
-Only after pressing the emergency-button again, the table-adjuster will listen to any inputs.§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+Only after pressing the emergency-button again, the table-adjuster will listen to any inputs.
+
 
 ## Dependencies
 This library uses the "Servo.h" library to control the servo motor. [GitHub](https://github.com/arduino-libraries/Servo)

@@ -15,8 +15,8 @@ TableAdjuster::TableAdjuster(
   this->preset = preset;
   this->table = table;
   this->status = status;
-  this->timeoutCounter = 0;
-  this->emergencyButton = new EmergencyButton(usersPresetConfig->pinBtnEmergency);
+  timeoutCounter = 0;
+  emergencyButton = new EmergencyButton(usersPresetConfig->pinBtnEmergency);
 
   status->setErrorStatus();
   delay(800);
@@ -32,18 +32,14 @@ void TableAdjuster::cycleDelay() {
 
 void TableAdjuster::cycle() {
   if (emergencyButton->isEmergency()) {
-    if (!isEmergency) {
+    if (emergencyButton->hasStateChanged()) {
       activateEmergencyStatus();
     }
     return;
   }
   
-  isEmergency = false;
-
   if (state == NoWorkState) {
-    WorkState currentState = preset->getState();
-    changeState(currentState);
-    status->setFreeStatus();
+    changeState(preset->getState());
   } 
 
   if (state == GoToHeight) {
@@ -52,6 +48,8 @@ void TableAdjuster::cycle() {
   } else if (state == SetHeight) {
     status->setBusyStatus();
     setHeight();
+  } else {
+    status->setFreeStatus();
   }
 
   if (timeoutCounter >= timeoutDurationMs) {
@@ -62,7 +60,6 @@ void TableAdjuster::cycle() {
 }
 
 void TableAdjuster::activateEmergencyStatus() {
-  isEmergency = true;
   status->setErrorStatus();
   table->stop();
   changeState(NoWorkState);
@@ -72,13 +69,14 @@ void TableAdjuster::moveTable() {
   if (timeoutCounter >= timeoutDurationMs) {
     table->stop();
     timeout("TableAdjuster::moveTable");
-  } else {
-    int presetHeight = preset->getPresetValue();
-    MoveDirection direction = table->goToPosition(presetHeight);
-    if (direction == None) {
-      Serial.println("TableAdjuster::moveTable reached correct position.");
-      resetState();
-    }
+    return; 
+  } 
+
+  int presetHeight = preset->getPresetValue();
+  MoveDirection direction = table->goToPosition(presetHeight);
+  if (direction == None) {
+    Serial.println("TableAdjuster::moveTable reached correct position.");
+    resetState();
   }
 }
 

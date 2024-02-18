@@ -21,7 +21,6 @@ class TableMover {
     public: 
       TableMover(ConfigServo* servo);
       void moveTable(MoveDirection direction);
-      void move(int degree);
 };
 
 #endif

@@ -8,20 +8,20 @@ void setup() {
 
   TableAdjusterBuilder builder;
   adjuster = &builder
-    .setPinBtnUser(53)
+    .setPinBtnUser(49)
     .setPinBtnPresets(0, 51)
-    .setPinBtnPresets(1, 50)
-    .setPinBtnEmergency(52)
+    .setPinBtnPresets(1, 53)
+    .setPinBtnEmergency(47)
 
     .setHeightTolerance(2)
-    .setPinUltrasonicTrigger(48)
-    .setPinUltrasonicEcho(49)
+    .setPinUltrasonicTrigger(41)
+    .setPinUltrasonicEcho(42)
 
-    .setPinStatusLedRed(45)
-    .setPinStatusLedYellow(46)
-    .setPinStatusLedGreen(47)
+    .setPinStatusLedRed(31)
+    .setPinStatusLedYellow(33)
+    .setPinStatusLedGreen(35)
 
-    .setPinServo(44)
+    .setPinServo(39)
     .setMoveUpAngle(120)
     .setMoveStopAngle(90)
     .setMoveDownAngle(60)

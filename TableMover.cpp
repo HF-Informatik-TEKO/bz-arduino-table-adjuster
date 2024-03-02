@@ -21,15 +21,15 @@ void TableMover::moveTable(MoveDirection direction) {
 
 void TableMover::moveUp() {
   Serial.println("TableMover: move up");
-  servo->write(150);
+  servo->write(upPos);
 }
 
 void TableMover::moveDown() {
   Serial.println("TableMover: move down");
-  servo->write(30);
+  servo->write(downPos);
 }
 
 void TableMover::moveStop() {
   Serial.println("TableMover: move stop");
-  servo->write(90);
+  servo->write(stopPos);
 }

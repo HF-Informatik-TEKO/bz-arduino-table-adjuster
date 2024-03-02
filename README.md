@@ -14,6 +14,15 @@ Only after pressing the emergency-button again, the table-adjuster will listen t
 ## Dependencies
 This library uses the "Servo.h" library to control the servo motor. [GitHub](https://github.com/arduino-libraries/Servo)
 
+## Material List
+- LEDs (green, yellow, red) -> status lights
+- Ultrasonic sensor -> distance measuring
+- Servo-motor -> table input
+- Buttons -> safety-switch, presets, user-switch
+- Breadboard
+- Cables (div)
+- Resistors (div)
+
 ## Builder Default Values
 ```cpp
 adjuster = &builder
